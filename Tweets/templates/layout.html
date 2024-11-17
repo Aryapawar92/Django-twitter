@@ -15,7 +15,7 @@
   <body class="">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Twitter-Django</a>
+        <a class="navbar-brand" href={% url 'tweet_list'%}>Twitter-Django</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -65,10 +65,17 @@
               placeholder="Search"
               aria-label="Search"
             />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
           </form>
+          <a href="{% url 'tweet_list'%}" class="btn btn-primary">Tweet Home</a>
+          {% if user.is_authenticated %}
+          <form action="{% url 'logout'%}" method="post" class="">
+            {% csrf_token %}
+            <button class="btn btn-danger ml-2" type='submit'>Logout</button>
+          </form>
+          {% else %}
+          <button class="btn btn-danger ml-2" type='submit' href="{% url 'register'%}">Register</button>
+          <button class="btn btn-danger ml-2" type='submit' href="{% url 'login'%}">Login</button>
+          {% endif %}
         </div>
       </div>
     </nav>
