@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Arya and Twitter
+{% endblock %}
+
+{% block content %}
+<h1 class = 'text-center mt-4'>Welcome to My Twitter Django Clone</h1>
+
+<h2> {% if  form.instance.pk %}
+    Edit Tweet 
+    {% else %} 
+    Create Tweet
+    {% endif %}
+    <form enctype = "multipart/form-data" method="post" class = "form">
+        {% csrf_token %}
+        {{ form }}
+    <button class = "btn btn-warning" type = "submit">Create Tweet</button>
+    </form>
+    <a href="{% url 'tweet_list'%}">Back to tweet List</a>
+</h2>
+{% endblock  %}
